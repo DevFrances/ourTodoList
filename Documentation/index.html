@@ -1,0 +1,362 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+<header>
+    <title>Documentation</title>
+</header>
+    <body>
+      <div class="content-info">
+        <div class="section-txt" id="start">
+          <h3>Introduction: Getting started</h3>
+          <p>The TodoApp helps a user to generate a list of items, filter through, and delete list items from the log.</p>
+          <p>The app also marks every Todo as active or completed, and displays only all, active or completed Todo list.</p>
+          <p>It also clears all completed Todos from the list array.</p>
+          <p>The design is programmed with pure JavaScript also known as Vanilla JavaScript.</p>
+
+          <h3>Technical Guide</h3>
+          <p>The todo-list-app is built using the <b>MVC -</b> Model, View, Controller blueprint</p>
+          <p>The Model, View and the Controller are separate entities. The Controller serves as the intermidiary between the Model and the View, thereby making
+              it the only entity that can interact with the both.
+          </p>
+          
+          <p>The Model View Controller</p>
+
+          <ul>
+            <li>Model: Model is responsible for managing the data of the application. </li>
+            <li>View: View is a presentation of the model in a particular format - in our case displaying All, Active or Completed todos (route). It also let user to interact with displayed data. </li>
+            <li>Controller: Controller responds to the user input from View and performs interactions with Model.</li>
+          </ul>
+          
+          <h3>Main files</h3>
+          <ul>
+            <li><b>Html</b></li>
+              <ul>
+                <li>index.html - Our application starting file</li>
+              </ul>
+            <li><b>Css</b></li>
+            <ul>
+              <li>index.css - Defines our application CSS styles</li>
+             
+            </ul>
+            <li><b>Javascript</b></li>
+              <ul>
+                <li>
+                  app.js
+                  <p>
+                    In the app.js file, the Model, View and Controller is being initialized. This manages the user actions
+                    and connects the View with the Model in terms of interactions and operations.
+                  </p>
+                </li>
+                <li>
+                  store.js
+                  <p>
+                    The store.js file stores the last time the user visited the TodoApp. It stores it in the local storage.
+                  </p>
+                </li>
+                <li>
+                  helpers.js
+                  <P >
+                   This delivers helper functions for DOM elements - querying, wrapping, delegating events
+                  </P>
+                </li>
+                <li>
+                  model.js
+                  <P>
+                    Data management methods
+                  </P>
+                </li>
+                <li>
+                  template.js
+                  <P>
+                    file that concern template function to display list items,
+                    change button states, escape characters
+                  </P>
+                </li>
+                <li>
+                  view.js
+                  <P>
+                    This defines how the data will be displayed on the client side of the Todo
+                  </P>
+                </li>
+              </ul>
+          </ul>
+        </div>
+
+    <div class="section-txt" id="code">
+							<h3>Bug Fixing</h3>
+              <ul>
+                <li>
+                  <b>controller.js line #95</b>
+                  <p>Bug which not allows adding new todos to the list (simple typo bug).</p>
+                  <p>bug: <xmp>Controller.prototype.adddItem</xmp></p>
+                  <p>Solved: <xmp>Controller.prototype.addItem</xmp></p>
+                </li>
+                <li>
+                  <b>store.js</b>
+                  <p>Bug which may leads to potential conflict between duplicate IDs</p>
+                  <p>bug: <xmp>
+                    for (var i = 0; i < 6; i++) {
+                    newId += charset.charAt(Math.floor(Math.random() * charset.length));
+                    }
+                  </xmp></p>
+                  <p>Solved:
+                    <xmp>var isUnique = false;
+
+                  while (!isUnique){
+                    for (var i = 0; i < 6; i++) {
+                      newId += charset.charAt(Math.floor(Math.random() * charset.length));
+                    }
+                    isUnique = true;
+                    for (var i = 0; i < todos.length; i++) {
+                      if (todos[i].id == newId) {
+                        isUnique = false;
+                      }
+                    }
+                  }
+                </xmp></p>
+                </li>
+                <li>
+                    <b>index.html line 16</b>
+                   <p>Missing id in input tag for toggle-all label  which prevent toggle all todos to work properly.
+                    </p>
+                    <xmp>
+                      <input class="toggle-all" type="checkbox">
+                      <label for="toggle-all">Mark all as complete</label>
+                    </xmp>
+                    Fixed:
+                    <xmp>
+                      <input class="toggle-all" id="toggle-all" type="checkbox">
+                    </xmp>
+                  </li>
+              </ul>
+            </div>  
+
+
+            <div class="section-txt" id="features">
+              <h3>Adding Tests</h3>
+              
+              <p>
+                <ul>
+                  
+                   <p>Test was carried out using <b>Jasmine</b></p>
+                   <p><b>Jasmine </b> is a JavaScript Open Source testing Framework</p>
+                  
+                  <br />It should:
+                  <ul>
+                    <li>
+                      <p><b>Show entries on start-up</b></p>
+                    
+                    </li>
+                    <li>
+                      <p><b>Show active entries</b></p>
+                   
+                    </li>
+                    <li>
+                      <p><b>Show completed entries</b></p>
+                    
+                      </p>
+                    </li>
+                    <li>
+                      <p><b>Show the content block when todos exists</b></p>
+                    
+                    </li>
+                    <li>
+                      <p><b>Highlight "All" filter by default</b></p>
+                     
+                    </li>
+                    <li>
+                      <p><b>Toggle all todos to completed</b></p>
+                      
+                    </li>
+                    <li>
+                      <p><b>Update the view</b></p>
+                     
+                    </li>
+                    <li>
+                      <p><b>Add a new todo to the model</b></p>
+                   
+                    </li>
+                    <li>
+                      <p><b>Remove an entry from the model</b></p>
+                    
+                    </li>
+                  </ul>
+                </ul>
+
+                <h3>Comparison between Competitors</h3>
+                <ul>
+                 
+                    <ul>
+                      <li>
+                        <h4><b>Our todo App</b></h4>
+                        <p style="margin-top: 20px;"><b>Loading</b></p>
+                         <ul>
+                           <li>PAGE LOADING TIME:498ms</li>
+                           <li>DOM CONTENT LOADED TIME:508ms</li>
+                           <li>NUMBER OF REQUESTS SENT:11 requests</li>
+                           <li>AMOUNT OF DATA TRANSFERRED:42.8kb</li>
+
+                         </ul>
+                         <div>
+                           <img src="images/ourTodo_performance.png" alt="">
+                         </div>
+                        <h4 style="margin-top: 20px;"><p><b>Memory</b></p></h4> 
+                         <ul>
+                           <li>TOTAL AMOUNT OF MEMORY USED: 1200kb</li>
+                         </ul>
+                         <div>
+                           <img src="images/ourTodo_memory.png" alt="">
+                         </div>
+                     
+                      </li>
+  
+                      <li style="margin-top: 30px;">
+                        <b>Competitor Todo App</b>
+                        
+                         <h4 style="margin-top: 20px;"><p><b>Loading</b></p></h4>
+                         <ul>
+                           <li>PAGE LOADING TIME: 12.86s</li>
+                           <li>DOM CONTENT LOADED TIME:3.50s</li>
+                           <li>NUMBER OF REQUESTS SENT:106 requests</li>
+                           <li>AMOUNT OF DATA TRANSFERRED:165kb</li>
+
+                         </ul>
+                         <div>
+                           <img src="images/competitor_performance.png" alt="">
+                         </div>
+                         <p style="margin-top: 20px;"><b>Memory</b></p>
+                         <ul>
+                           <li>TOTAL AMOUNT OF MEMORY USED: 5375kb</li>
+                         </ul>
+                         <div>
+                           <img src="images/competitor_memory.png" alt="">
+                         </div>
+                    </ul>
+                  </li>
+                </ul>
+                <ul>
+  
+                </ul>
+
+                <h3>Audit Comparison</h3>
+                      <table style="width:100%">
+                        <tr>
+                          <th>Evaluated Parameter</th>
+                          <th>Our Todo App</th>
+                          <th>Our Competitor App</th>
+                        </tr>
+                        <tbody >
+                        <tr>
+                          <td>Page load time</td>
+                          <td>498ms</td>
+                          <td>12.86s</td>
+                        </tr>
+                        <tr>
+                          <td>DOM content load time</td>
+                          <td>508 ms</td>
+                          <td> 3.50s</td>
+                        </tr>
+                        <tr>
+                          <td>Number of requests sent</td>
+                          <td>11 requests</td>
+                          <td>106 requests</td>
+                        </tr>
+                        <tr>
+                          <td>Amount of data transferred</td>  
+                          <td>42.8kb</td>
+                          <td>165kb</td>
+                        </tr>
+                        
+                      </tbody>
+                      </table>
+                
+                      <div class="section-txt" id="features">
+                        <h3><b>Our Todo list App</b></h3>
+                        
+                        <p>
+                          <ul>
+                            
+                             <p style="margin-top: 20px;"><h5><b>Advantages (+)</b></h5></p>
+                            
+                            <ul>
+                              <li>
+                                <p>Short loading time</p>
+                              
+                              </li>
+                              <li>
+                                <p>Low memory usage</p>
+                             
+                              </li>
+                              <li>
+                                <p>Short time of performing functionalities</p>
+                              </li>
+                              <li>
+                                <p>Simple design</p>
+                              
+                              </li>
+                            </ul>
+                          </ul>
+                          <p>
+                            <ul>
+                              
+                               <p style="margin-top: 20px;"><h4><b>Disadvantages (-)</b></h4></p>
+                              
+                              <ul>
+                                <li>
+                                  <p>The functionality is limited</p>
+                                
+                                </li>
+                                <li>
+                                  <p>Only local storage is used to store data</p>
+                               
+                                </li>
+                                
+                              </ul>
+                            </ul>
+
+                            <div class="section-txt" id="features">
+                              <h3><b>Competitors Todo list App</b></h3>
+                              <p>
+                                <ul>
+                                  
+                                   <p style="margin-top: 20px;"><h5><b>Advantages (+)</b></h5></p>
+                                  
+                                  <ul>
+                                    <li>
+                              <p>Ability to sort tasks</p>
+                                    </li>
+                                    <li>
+                                      <p>Ability to print list</p>
+                                   
+                                    </li>
+                                    <li>
+                                      <p>User can create multiple list</p>
+                                    </li>
+                                    <li>
+                                      <p>User can create categories</p>
+                                    
+                                    </li>
+                                  </ul>
+                                </ul>
+                                <p>
+                                  <ul>
+                                    
+                                     <p style="margin-top: 20px;"><h5><b>Disadvantages (-)</b></h5></p>
+                                    
+                                    <ul>
+                                      <li>
+                                        <p>Long loading time</p>
+                                      
+                                      </li>
+                                      
+                                      <li> <p>High memory usage</p>
+                                      </li>
+                                       
+                                     
+                                      <li><p>Google ads significantly extend loading time</p></li>
+                                    </ul>
+                                  </ul>
+           
+    </body>
+</html>
